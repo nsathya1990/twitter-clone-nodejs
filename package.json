@@ -8,5 +8,8 @@
         "start": "node app.js"
     },
     "author": "Sathyapriyan Chinnathangam Nadar",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1"
+    }
 }
