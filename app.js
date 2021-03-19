@@ -8,5 +8,9 @@ app.set('view engine', 'pug');
 app.set('views', 'views');
 
 app.get('/', (req, res, next) => {
-    res.status(200).render('home');
+
+    const payload = {
+        pageTitle: 'Home'
+    };
+    res.status(200).render('home', payload);
 });
