@@ -8,6 +8,10 @@ const server = app.listen(port, () => console.log('Server listening on port: ' +
 app.set('view engine', 'pug');
 app.set('views', 'views');
 
+/** Routes */
+const loginRoutes = require('./routes/loginRoutes');
+app.use('/login', loginRoutes);
+
 app.get('/', middleware.requireLogin, (req, res, next) => {
     const payload = {
         pageTitle: 'Home',
