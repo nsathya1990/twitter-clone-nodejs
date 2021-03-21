@@ -32,7 +32,6 @@ router.post('/', async (req, res, next) => {
             $or: [{ username: username }, { email: email }],
         }).catch((error) => {
             console.log('ERROR');
-            console.log(error);
             payload.errorMessage = 'Something went wrong.';
             res.status(200).render('register', payload);
         });
