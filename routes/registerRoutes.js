@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
     res.status(200).render('register');
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res, next) => {
     console.log(req.body);
 
     const firstName = req.body.firstName.trim();
@@ -26,9 +26,11 @@ router.post('/', (req, res, next) => {
 
     if (firstName && lastName && username && email && password) {
         console.log('SUCCESS');
-        User.findOne({
+        const user = await User.findOne({
             $or: [{ username: username }, { email: email }],
-        }).then((user) => console.log(`user is ${user}`));
+        });
+        console.log(`user is ${user}`);
+        console.log('hello');
     } else {
         console.log('ERROR');
         payload.errorMessage = 'Make sure each field has a valid value.';
