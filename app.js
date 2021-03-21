@@ -4,6 +4,13 @@ const port = 3003;
 const middleware = require('./middleware');
 const path = require('path');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+mongoose
+    .connect(
+        'mongodb+srv://nadar:nadar123@twitterclonecluster.ipvg9.mongodb.net/TwitterCloneDB?retryWrites=true&w=majority'
+    )
+    .then(() => console.log('Database connection successful'))
+    .catch((err) => console.log('Database connection error ' + err));
 
 const server = app.listen(port, () => console.log('Server listening on port: ' + port));
 
