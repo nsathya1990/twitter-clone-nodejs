@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 const bodyParser = require('body-parser');
+const User = require('../schemas/UserSchema');
 
 app.set('view engine', 'pug');
 app.set('views', 'views');
@@ -25,6 +26,9 @@ router.post('/', (req, res, next) => {
 
     if (firstName && lastName && username && email && password) {
         console.log('SUCCESS');
+        User.findOne({
+            $or: [{ username: username }, { email: email }],
+        }).then((user) => console.log(`user is ${user}`));
     } else {
         console.log('ERROR');
         payload.errorMessage = 'Make sure each field has a valid value.';
