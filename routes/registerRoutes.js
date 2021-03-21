@@ -26,7 +26,6 @@ router.post('/', async (req, res, next) => {
     const payload = req.body;
 
     if (firstName && lastName && username && email && password) {
-        console.log('SUCCESS');
 
         const user = await User.findOne({
             $or: [{ username: username }, { email: email }],
