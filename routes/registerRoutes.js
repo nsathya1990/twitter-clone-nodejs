@@ -44,6 +44,7 @@ router.post('/', async (req, res, next) => {
             });
         } else {
             /** user found */
+            console.log('--- user found ---');
             if (emaiil === user.email) {
                 payload.errorMessage = 'Email already in use.';
             } else {
