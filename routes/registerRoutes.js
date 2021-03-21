@@ -37,6 +37,11 @@ router.post('/', async (req, res, next) => {
         });
         if (!user) {
             /** No user found */
+            const data = req.body;
+            User.create(data).then((user) => {
+                console.log('--- user created ---');
+                console.log(user);
+            });
         } else {
             /** user found */
             if (emaiil === user.email) {
