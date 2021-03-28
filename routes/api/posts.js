@@ -13,6 +13,7 @@ router.post('/', async (req, res, next) => {
         console.log('Content param not sent with request');
         return res.sendStatus(400);
     }
+
     res.status(200).send('it worked');
 });
 
