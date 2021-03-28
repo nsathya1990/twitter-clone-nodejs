@@ -22,13 +22,14 @@ $('#postTextarea').keyup((event) => {
 
 $('#submitPostButton').click((event) => {
     const button = $(event.target);
-    const textbox = $('postTextarea');
+    const textbox = $('#postTextarea');
 
     const data = {
-        // content: textbox.val(),
+        content: textbox.val(),
     };
 
+    console.log(data);
     $.post('/api/posts', data, (postData, status, xhr) => {
-        alert(postData);
+        console.log(postData);
     });
 });
