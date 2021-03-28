@@ -28,7 +28,6 @@ $('#submitPostButton').click((event) => {
         content: textbox.val(),
     };
 
-    console.log(data);
     $.post('/api/posts', data, (postData, status, xhr) => {
         const html = createPostHtml(postData);
         $('.postsContainer').prepend(html);
