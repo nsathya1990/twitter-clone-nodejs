@@ -30,6 +30,14 @@ $('#submitPostButton').click((event) => {
 
     console.log(data);
     $.post('/api/posts', data, (postData, status, xhr) => {
-        console.log(postData);
+        const html = createPostHtml(postData);
+        $('.postsContainer').prepend(html);
+        textbox.val('');
+        button.prop('disabled', true);
     });
 });
+
+function createPostHtml(postData) {
+    console.log(postData);
+    return postData.content;
+}
