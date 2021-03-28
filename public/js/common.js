@@ -41,6 +41,8 @@ function createPostHtml(postData) {
     console.log(postData);
 
     const postedBy = postData.postedBy;
+    const displayName = postedBy.firstName + ' ' + postedBy.lastName;
+    const timestamp = postData.createdAt; // 'To Do Later';
     return `<div class='post'>
 
                 <div class='mainContentContainer'>
@@ -49,6 +51,9 @@ function createPostHtml(postData) {
                     </div>
                     <div class='postContentContainer'>
                         <div class='header'>
+                            <a href='/profile/${postedBy.username}'>${displayName}</a>
+                            <span class='username'>@${postedBy.username}</span>
+                            <span class='date'>${timestamp}</span>
                         </div>
                         <div class='postBody'>
                             <span>${postData.content}</span>
