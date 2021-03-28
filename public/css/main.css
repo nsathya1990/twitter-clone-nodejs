@@ -1,9 +1,10 @@
 :root {
-    --blue: #1FA2F1;
-    --bluelight: #9BD1F9;
+    --blue: #1fa2f1;
+    --bluelight: #9bd1f9;
     --buttonHoverBg: #d4edff;
     --lightGrey: rgb(230, 236, 240);
     --spacing: 15px;
+    --greyText: rgb(101, 119, 134);
 }
 
 * {
@@ -39,7 +40,7 @@ nav a {
     height: 55px;
     font-size: 30px;
     padding: 10px;
-    color: #212529
+    color: #212529;
 }
 
 nav a.blue {
@@ -60,7 +61,6 @@ nav a:hover {
     flex-direction: column;
 }
 
-
 .titleContainer {
     height: 53px;
     padding: 0 var(--spacing);
@@ -76,8 +76,8 @@ nav a:hover {
 
 .postFormContainer {
     display: flex;
-    padding: var(--spacing); 
-    border-bottom: 10px solid rgb(230, 236, 240);  
+    padding: var(--spacing);
+    border-bottom: 10px solid rgb(230, 236, 240);
     flex-shrink: 0;
 }
 
@@ -114,4 +114,30 @@ nav a:hover {
 
 #submitPostButton:disabled {
     background-color: var(--bluelight);
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing);
+    cursor: pointer;
+    border-bottom: 1px solid var(--lightGrey);
+    flex-shrink: 0;
+}
+
+.mainContentContainer {
+    flex: 1;
+    display: flex;
+}
+
+.postContentContainer {
+    padding-left: var(--spacing);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.username,
+.date {
+    color: var(--greyText);
 }
