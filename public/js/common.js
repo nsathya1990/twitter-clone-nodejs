@@ -40,6 +40,11 @@ function createPostHtml(postData) {
     console.log(postData);
 
     const postedBy = postData.postedBy;
+
+    if (!postedBy._id) {
+        return console.log('User object not populated');
+    }
+
     const displayName = postedBy.firstName + ' ' + postedBy.lastName;
     const timestamp = postData.createdAt; // 'To Do Later';
     return `<div class='post'>
