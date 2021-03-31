@@ -49,6 +49,8 @@ $(document).on('click', '.likeButton', (event) => {
             console.log(postData);
             console.log(postData.likes);
             console.log(postData.likes.length);
+
+            button.find('span').text(postData.likes.length || '');
         },
     });
 });
@@ -81,7 +83,9 @@ function createPostHtml(postData) {
                     </div>
                     <div class='postContentContainer'>
                         <div class='header'>
-                            <a class='displayName' href='/profile/${postedBy.username}'>${displayName}</a>
+                            <a class='displayName' href='/profile/${postedBy.username}'>
+                                ${displayName}
+                            </a>
                             <span class='username'>@${postedBy.username}</span>
                             <span class='date'>${timestamp}</span>
                         </div>
@@ -102,6 +106,7 @@ function createPostHtml(postData) {
                             <div class='postButtonContainer'>
                                 <button class='likeButton'>
                                     <i class='far fa-heart'></i>
+                                    <span>${postData.likes.length || ''}</span>
                                 </button>
                             </div>
                         </div>
