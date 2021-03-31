@@ -41,7 +41,20 @@ router.post('/', async (req, res, next) => {
         });
 });
 
-router.put('/', async (req, res, next) => {
+router.put('/:id/like', async (req, res, next) => {
+
+    console.log(req.params.id);
+    const postId = req.params.id;
+    const userId = req.session.user_id;
+
+    const isLiked = req.session.user.likes && req.session.user.likes.includes(postId);
+
+    console.log('isLiked' + isLiked);
+
+    // insert user like
+
+    // insert post like
+
     res.status(200).send('Yahoo');
 });
 
