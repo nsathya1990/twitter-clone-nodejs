@@ -39,7 +39,7 @@ $('#submitPostButton').click((event) => {
 $(document).on('click', '.likeButton', (event) => {
     const button = $(event.target);
     const postId = getPostIdFromElement(button);
-    
+
     if (!postId) return;
 
     $.ajax({
@@ -47,8 +47,10 @@ $(document).on('click', '.likeButton', (event) => {
         type: 'PUT',
         success: (postData) => {
             console.log(postData);
-        }
-    })
+            console.log(postData.likes);
+            console.log(postData.likes.length);
+        },
+    });
 });
 
 function getPostIdFromElement(element) {
