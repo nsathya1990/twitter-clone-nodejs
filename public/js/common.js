@@ -82,6 +82,9 @@ function createPostHtml(postData) {
 
     const displayName = postedBy.firstName + ' ' + postedBy.lastName;
     const timestamp = timeDifference(new Date(), new Date(postData.createdAt));
+
+    const likeButtonActiveClass = postData.likes.includes(userLoggedIn._id) ? 'active' : '';
+
     return `<div class='post' data-id='${postData._id}'>
                 <div class='mainContentContainer'>
                     <div class='userImageContainer'>
@@ -110,7 +113,7 @@ function createPostHtml(postData) {
                                 </button>
                             </div>
                             <div class='postButtonContainer red'>
-                                <button class='likeButton'>
+                                <button class='likeButton ${likeButtonActiveClass}'>
                                     <i class='far fa-heart'></i>
                                     <span>${postData.likes.length || ''}</span>
                                 </button>
