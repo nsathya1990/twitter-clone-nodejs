@@ -39,7 +39,16 @@ $('#submitPostButton').click((event) => {
 $(document).on('click', '.likeButton', (event) => {
     const button = $(event.target);
     const postId = getPostIdFromElement(button);
-    console.log(postId);
+    
+    if (!postId) return;
+
+    $.ajax({
+        url: '/api/posts',
+        type: 'PUT',
+        success: (postData) => {
+            console.log(postData);
+        }
+    })
 });
 
 function getPostIdFromElement(element) {
