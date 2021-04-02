@@ -86,13 +86,21 @@ router.post('/:id/retweet', async (req, res, next) => {
         req.sendStatus(400);
     });
 
-    const option = deletedPost !== null ? '$pull' : '$addToSet';
-    return res.status(200).send(option);
+    const option = deletedPost ? '$pull' : '$addToSet';
 
-    /** insert/ remove user like */
+    let repost = deletedPost;
+
+    if (!repost) {
+        repost = await Post.create({ postedBy: userId, repostData: postId }).catch((error) => {
+            console.log(error);
+            req.sendStatus(400);
+        });
+    }
+
+    /** insert/ remove user retweet */
     req.session.user = await User.findByIdAndUpdate(
         userId,
-        { [option]: { likes: postId } },
+        { [option]: { retweets: repost._id } },
         { new: true }
     ).catch((error) => {
         console.log(error);
@@ -102,7 +110,7 @@ router.post('/:id/retweet', async (req, res, next) => {
     /** insert post like */
     const post = await Post.findByIdAndUpdate(
         postId,
-        { [option]: { likes: userId } },
+        { [option]: { retweetUsers: userId } },
         { new: true }
     ).catch((error) => {
         console.log(error);
