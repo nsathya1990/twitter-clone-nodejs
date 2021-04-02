@@ -74,15 +74,20 @@ router.put('/:id/like', async (req, res, next) => {
 });
 
 router.post('/:id/retweet', async (req, res, next) => {
-
-    return res.status(200).send('ppppaaaa .... pppppaaaa');
-    console.log(req.params.id);
     const postId = req.params.id;
     const userId = req.session.user._id;
 
-    const isLiked = req.session.user.likes && req.session.user.likes.includes(postId);
+    /**try and delete retweet */
+    const deletedPost = await Post.findOneAndDelete({
+        postedBy: userId,
+        retweetData: postId,
+    }).catch((error) => {
+        console.log(error);
+        req.sendStatus(400);
+    });
 
-    const option = isLiked ? '$pull' : '$addToSet';
+    const option = deletedPost !== null ? '$pull' : '$addToSet';
+    return res.status(200).send(option);
 
     /** insert/ remove user like */
     req.session.user = await User.findByIdAndUpdate(
