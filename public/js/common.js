@@ -105,6 +105,9 @@ function createPostHtml(postData) {
     const timestamp = timeDifference(new Date(), new Date(postData.createdAt));
 
     const likeButtonActiveClass = postData.likes.includes(userLoggedIn._id) ? 'active' : '';
+    const retweetButtonActiveClass = postData.retweetUsers.includes(userLoggedIn._id)
+        ? 'active'
+        : '';
 
     return `<div class='post' data-id='${postData._id}'>
                 <div class='mainContentContainer'>
@@ -129,7 +132,7 @@ function createPostHtml(postData) {
                                 </button>
                             </div>
                             <div class='postButtonContainer green'>
-                                <button class='retweetButton'>
+                                <button class='retweetButton ${retweetButtonActiveClass}'>
                                     <i class='fas fa-retweet'></i>
                                     <span>${postData.retweetUsers.length || ''}</span>
                                 </button>
