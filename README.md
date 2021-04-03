@@ -42,3 +42,7 @@
 -   It is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.
 
 ### Body-parser
+
+-   https://www.npmjs.com/package/body-parser
+-   Node.js body parsing middleware.
+-   Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
