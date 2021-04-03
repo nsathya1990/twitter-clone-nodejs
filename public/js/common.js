@@ -38,6 +38,17 @@ $('#submitPostButton').click((event) => {
     });
 });
 
+$('#replyModal').on('show.bs.modal', (event) => {
+    console.log('hi')
+    const button = $(event.relatedTarget);
+    const postId = getPostIdFromElement(button);
+
+    $.get('/api/posts/' + postId, (results) => {
+        console.log(results);
+    });
+
+});
+
 $(document).on('click', '.likeButton', (event) => {
     const button = $(event.target);
     const postId = getPostIdFromElement(button);
@@ -102,7 +113,7 @@ function createPostHtml(postData) {
     }
 
     const isRetweet = postData.retweetData !== undefined;
-    console.log(isRetweet);
+
     const retweetedBy = isRetweet ? postData.postedBy.username : null;
     postData = isRetweet ? postData.retweetData : postData;
 

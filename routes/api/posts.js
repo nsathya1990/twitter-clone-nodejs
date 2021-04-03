@@ -22,6 +22,10 @@ router.get('/', (req, res, next) => {
         });
 });
 
+router.get('/:id', (req, res, next) => {
+    res.status(200).send('this is awesome');
+});
+
 router.post('/', async (req, res, next) => {
     if (!req.body.content) {
         console.log('Content param not sent with request');

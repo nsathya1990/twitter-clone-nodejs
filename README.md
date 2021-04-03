@@ -13,4 +13,7 @@
     https://www.npmjs.com/package/express-session
     This is a Node.js module available through the npm registry.
     Create a session middleware with the given options. Session data is not saved in the cookie itself, just the session ID. Session data is stored server-side.
- 
+
+-   Bcrypt
+    https://www.npmjs.com/package/bcrypt
+    A library to help us hash passwords.
