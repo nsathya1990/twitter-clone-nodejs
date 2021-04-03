@@ -22,3 +22,8 @@
     https://www.npmjs.com/package/mongodb
     The MongoDB driver for Node.js
     MongoDB is a general purpose, document-based, distributed database built for modern application developers and for the cloud era.
+
+-   Mongoose
+    https://www.npmjs.com/package/mongoose
+    Mongoose provides a straight-forward, schema-based solution to model our application data. It includes built-in type casting, validation, query building, business logic hooks and more, out of the box.
+    It is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.
