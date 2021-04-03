@@ -1,3 +1,9 @@
+-- List of CDNs
+
+-   Bootstrap 4
+-   jQuery 3.6
+-   FontAwesome
+
 -- List of Dependencies
 
 -   Pug
@@ -27,3 +33,5 @@
     https://www.npmjs.com/package/mongoose
     Mongoose provides a straight-forward, schema-based solution to model our application data. It includes built-in type casting, validation, query building, business logic hooks and more, out of the box.
     It is a MongoDB object modeling tool designed to work in an asynchronous environment. Mongoose supports both promises and callbacks.
+
+- Body-parser

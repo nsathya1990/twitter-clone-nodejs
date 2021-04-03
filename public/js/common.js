@@ -6,7 +6,7 @@
 $('#postTextarea, #replyTextarea').keyup((event) => {
     const textbox = $(event.target);
     const value = textbox.val().trim();
-    
+
     const isModal = textbox.parents('.modal').length == 1;
 
     const submitButton = isModal ? $('#submitReplyButton') : $('#submitPostButton');
@@ -39,14 +39,13 @@ $('#submitPostButton').click((event) => {
 });
 
 $('#replyModal').on('show.bs.modal', (event) => {
-    console.log('hi')
+    console.log('hi');
     const button = $(event.relatedTarget);
     const postId = getPostIdFromElement(button);
 
     $.get('/api/posts/' + postId, (results) => {
-        console.log(results);
+        outputPosts(results, $('#originalPostContainer'));
     });
-
 });
 
 $(document).on('click', '.likeButton', (event) => {
@@ -206,5 +205,22 @@ function timeDifference(current, previous) {
         return Math.round(elapsed / msPerMonth) + ' months ago';
     } else {
         return Math.round(elapsed / msPerYear) + ' years ago';
+    }
+}
+
+function outputPosts(results, container) {
+    container.html('');
+
+    if (!Array.isArray(results)) {
+        results = [results];
+    }
+
+    results.forEach((result) => {
+        const html = createPostHtml(result);
+        container.append(html);
+    });
+
+    if (!results.length) {
+        container.append('<span class="noResults">Nothing to show</span>');
     }
 }
