@@ -43,7 +43,6 @@ router.post('/', async (req, res, next) => {
             res.status(201).send(newPost);
         })
         .catch((error) => {
-            console.log('---ERROR---');
             console.error(error);
             res.sendStatus(400);
         });
@@ -129,12 +128,14 @@ router.post('/:id/retweet', async (req, res, next) => {
 });
 
 async function getPosts(filter) {
-    const results = await Post.find(filter)
+    let results = await Post.find(filter)
         .populate('postedBy')
         .populate('retweetData')
+        .populate('replyTo')
         .sort({ createdAt: -1 })
         .catch((error) => console.log(error));
 
+    results = await User.populate(results, { path: 'replyTo.postedBy' });
     return await User.populate(results, { path: 'retweetData.postedBy' });
 }
 
