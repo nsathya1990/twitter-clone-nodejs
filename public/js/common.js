@@ -57,7 +57,7 @@ $('#replyModal').on('show.bs.modal', (event) => {
     $('#submitReplyButton').data('id', postId);
 
     $.get('/api/posts/' + postId, (results) => {
-        outputPosts(results, $('#originalPostContainer'));
+        outputPosts(results.postData, $('#originalPostContainer'));
     });
 });
 
@@ -259,4 +259,21 @@ function outputPosts(results, container) {
     if (!results.length) {
         container.append('<span class="noResults">Nothing to show</span>');
     }
+}
+
+function outputPostsWithReplies(results, container) {
+    container.html('');
+
+    if (results.replyTo && results.replyTo._id) {
+        const html = createPostHtml(results.replyTo);
+        container.append(html);
+    }
+
+    const mainPostHtml = createPostHtml(results.postData);
+    container.append(mainPostHtml);
+
+    results.replies.forEach((result) => {
+        const html = createPostHtml(result);
+        container.append(html);
+    });
 }
