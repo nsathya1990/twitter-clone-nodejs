@@ -8,3 +8,9 @@
     https://expressjs.com/en/starter/installing.html
     Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
     It provides a thin layer of fundamental web application features, without obscuring Node.js features that we know and love.
+
+-   Express-session
+    https://www.npmjs.com/package/express-session
+    This is a Node.js module available through the npm registry.
+    Create a session middleware with the given options. Session data is not saved in the cookie itself, just the session ID. Session data is stored server-side.
+ 

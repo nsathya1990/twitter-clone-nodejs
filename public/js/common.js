@@ -3,12 +3,14 @@
 });
  */
 
-$('#postTextarea').keyup((event) => {
+$('#postTextarea, #replyTextarea').keyup((event) => {
     const textbox = $(event.target);
     const value = textbox.val().trim();
-    console.log(value);
+    
+    const isModal = textbox.parents('.modal').length == 1;
 
-    const submitButton = $('#submitPostButton');
+    const submitButton = isModal ? $('#submitReplyButton') : $('#submitPostButton');
+
     if (!submitButton.length) {
         return alert('No submit button found');
     }
