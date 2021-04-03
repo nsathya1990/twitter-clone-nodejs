@@ -29,7 +29,7 @@ $('#submitPostButton, #submitReplyButton').click((event) => {
     const textbox = isModal ? $('#replyTextarea') : $('#postTextarea');
 
     const data = {
-        content: textbox.val(),
+        content: textbox.val()
     };
 
     if (isModal) {
@@ -84,7 +84,7 @@ $(document).on('click', '.likeButton', (event) => {
             } else {
                 button.removeClass('active');
             }
-        },
+        }
     });
 });
 
@@ -105,7 +105,7 @@ $(document).on('click', '.retweetButton', (event) => {
             } else {
                 button.removeClass('active');
             }
-        },
+        }
     });
 });
 
@@ -128,9 +128,7 @@ function getPostIdFromElement(element) {
     return postId;
 }
 
-function createPostHtml(postData) {
-    console.log(postData);
-
+function createPostHtml(postData, largeFont = false) {
     if (!postData) {
         return console.log('post object is null');
     }
@@ -150,9 +148,8 @@ function createPostHtml(postData) {
     const timestamp = timeDifference(new Date(), new Date(postData.createdAt));
 
     const likeButtonActiveClass = postData.likes.includes(userLoggedIn._id) ? 'active' : '';
-    const retweetButtonActiveClass = postData.retweetUsers.includes(userLoggedIn._id)
-        ? 'active'
-        : '';
+    const retweetButtonActiveClass = postData.retweetUsers.includes(userLoggedIn._id) ? 'active' : '';
+    const largeFontClass = largeFont ? 'largeFont' : '';
 
     let retweetText = '';
     if (isRetweet) {
@@ -173,7 +170,7 @@ function createPostHtml(postData) {
                     </div>`;
     }
 
-    return `<div class='post' data-id='${postData._id}'>
+    return `<div class='post ${largeFontClass}' data-id='${postData._id}'>
                 <div class='postActionContainer'>
                     ${retweetText}
                 </div>
@@ -269,7 +266,7 @@ function outputPostsWithReplies(results, container) {
         container.append(html);
     }
 
-    const mainPostHtml = createPostHtml(results.postData);
+    const mainPostHtml = createPostHtml(results.postData, true);
     container.append(mainPostHtml);
 
     results.replies.forEach((result) => {
