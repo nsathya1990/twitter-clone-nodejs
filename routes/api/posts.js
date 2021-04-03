@@ -14,13 +14,19 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
     const postId = req.params.id;
+
     let results = await getPosts({ _id: postId });
     results = results[0];
-    console.log(results);
+
     res.status(200).send(results);
 });
 
 router.post('/', async (req, res, next) => {
+    if (req.body.replyTo) {
+        console.log(req.body.replyTo);
+        return res.sendStatus(400);
+    }
+
     if (!req.body.content) {
         console.log('Content param not sent with request');
         return res.sendStatus(400);
