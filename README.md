@@ -17,3 +17,8 @@
 -   Bcrypt
     https://www.npmjs.com/package/bcrypt
     A library to help us hash passwords.
+
+-   Mongodb
+    https://www.npmjs.com/package/mongodb
+    The MongoDB driver for Node.js
+    MongoDB is a general purpose, document-based, distributed database built for modern application developers and for the cloud era.
